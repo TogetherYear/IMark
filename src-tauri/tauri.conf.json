@@ -1,0 +1,132 @@
+{
+    "$schema": "../node_modules/@tauri-apps/cli/schema.json",
+    "build": {
+        "beforeBuildCommand": "npm run build",
+        "beforeDevCommand": "npm run dev",
+        "devPath": "http://localhost:6768",
+        "distDir": "../dist"
+    },
+    "package": {
+        "productName": "IMark",
+        "version": "0.1.0"
+    },
+    "tauri": {
+        "allowlist": {
+            "window": {
+                "all": false,
+                "center": true,
+                "create": true,
+                "hide": true,
+                "close": true,
+                "minimize": true,
+                "setAlwaysOnTop": true,
+                "setFocus": true,
+                "setFullscreen": true,
+                "setPosition": true,
+                "setResizable": true,
+                "setSize": true,
+                "show": true,
+                "startDragging": true,
+                "setIgnoreCursorEvents": true
+            },
+            "process": {
+                "all": true
+            },
+            "protocol": {
+                "all": true,
+                "assetScope": [
+                    "**"
+                ]
+            },
+            "path": {
+                "all": true
+            },
+            "fs": {
+                "all": true,
+                "scope": [
+                    "**"
+                ]
+            },
+            "shell": {
+                "all": true
+            },
+            "globalShortcut": {
+                "all": true
+            },
+            "clipboard": {
+                "all": true
+            },
+            "dialog": {
+                "all": true
+            }
+        },
+        "bundle": {
+            "active": true,
+            "category": "DeveloperTool",
+            "copyright": "",
+            "deb": {
+                "depends": []
+            },
+            "externalBin": [],
+            "icon": [
+                "icons/icon.ico"
+            ],
+            "identifier": "com.tauri.build",
+            "longDescription": "",
+            "resources": [
+                "./Extra"
+            ],
+            "shortDescription": "",
+            "targets": "all",
+            "windows": {
+                "webviewInstallMode": {
+                    "silent": true,
+                    "type": "downloadBootstrapper"
+                },
+                "wix": {
+                    "language": "zh-CN"
+                },
+                "nsis": {
+                    "installerIcon": "icons/icon.ico",
+                    "installMode": "perMachine"
+                },
+                "certificateThumbprint": null,
+                "digestAlgorithm": "sha256",
+                "timestampUrl": ""
+            }
+        },
+        "security": {
+            "csp": null
+        },
+        "updater": {
+            "active": false
+        },
+        "windows": [
+            {
+                "fullscreen": false,
+                "height": 150,
+                "minHeight": 150,
+                "resizable": true,
+                "center": false,
+                "title": "Application",
+                "width": 340,
+                "minWidth": 340,
+                "maxWidth": 340,
+                "maxHeight": 4000,
+                "decorations": false,
+                "focus": false,
+                "label": "Application",
+                "transparent": true,
+                "url": "/#/Application",
+                "visible": false,
+                "maximizable": false,
+                "alwaysOnTop": true,
+                "skipTaskbar": true
+            }
+        ],
+        "systemTray": {
+            "iconPath": "icons/tray.ico",
+            "iconAsTemplate": true
+        }
+    }
+}

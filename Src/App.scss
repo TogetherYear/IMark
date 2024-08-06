@@ -1,0 +1,61 @@
+// 全局字体
+// @font-face {
+// font-family: Custom;
+// src: url("./Assets/Fonts/Font.ttf");
+// src: url("./Assets/Fonts/Font2.ttf");
+// }
+
+html,
+body {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    // font-family: Custom;
+    font-family: Tahoma;
+    user-select: none;
+    overflow: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
+}
+
+.el-message-box {
+    box-shadow: 0px 0px 10px 0px #80dd80 !important;
+}
+
+.el-input__wrapper,
+.el-textarea__inner {
+    background-color: #212121 !important;
+    box-shadow: none !important;
+}
+.is-focus {
+    box-shadow: none !important;
+}
+
+.el-input__inner,
+.el-textarea__inner {
+    color: #ffffff !important;
+    letter-spacing: 1px;
+}
