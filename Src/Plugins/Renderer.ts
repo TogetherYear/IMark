@@ -705,6 +705,8 @@ class Renderer extends EventSystem {
             return 'Tray';
         } else if (href.indexOf('Update') != -1) {
             return 'Update';
+        } else if (href.indexOf('Picture') != -1) {
+            return 'Picture';
         } else {
             return 'Application';
         }
