@@ -129,6 +129,9 @@ class Renderer extends EventSystem {
             Center: () => {
                 return W.appWindow.center();
             },
+            SetResizable: (flag: boolean) => {
+                return W.appWindow.setResizable(flag);
+            },
             SetAlwaysOnTop: (b: boolean) => {
                 return W.appWindow.setAlwaysOnTop(b);
             },

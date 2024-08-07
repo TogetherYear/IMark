@@ -58,6 +58,25 @@ class Tab extends AActor {
             skipTaskbar: false
         });
     }
+
+    public async OnClickExpand() {
+        if (this.parent.isExpand.value) {
+            this.parent.isExpand.value = false;
+            const size = await Renderer.Widget.GetSize();
+            localStorage.setItem('Expand', '0');
+            localStorage.setItem('AllWidth', `${size.width}`);
+            localStorage.setItem('AllHeight', `${size.height}`);
+            await Renderer.Widget.SetSize(50, 50);
+            await Renderer.Widget.SetResizable(false);
+        } else {
+            this.parent.isExpand.value = true;
+            localStorage.setItem('Expand', '1');
+            const width = parseInt(localStorage.getItem('AllWidth') || '340');
+            const height = parseInt(localStorage.getItem('AllHeight') || '150');
+            await Renderer.Widget.SetSize(width, height);
+            await Renderer.Widget.SetResizable(true);
+        }
+    }
 }
 
 export { Tab };

@@ -15,7 +15,7 @@ instance.tab.Run();
 <template>
     <div class="Tab">
         <span class="Drag" data-tauri-drag-region></span>
-        <span class="Logo">
+        <span class="Logo" @dblclick="instance.tab.OnClickExpand()" data-tauri-drag-region>
             <img :src="logoIcon" alt="" />
         </span>
         <!-- <span class="Title">IMark</span> -->

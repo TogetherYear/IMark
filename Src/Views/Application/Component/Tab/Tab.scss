@@ -18,8 +18,8 @@
         height: 30px;
         left: 0;
         top: 0;
-        pointer-events: none;
         left: 4px;
+        cursor: pointer;
         img {
             position: absolute;
             width: 86%;
@@ -28,6 +28,7 @@
             left: 0;
             right: 0;
             margin: auto;
+            pointer-events: none;
         }
     }
     .Title {

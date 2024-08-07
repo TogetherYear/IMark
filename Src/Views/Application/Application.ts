@@ -1,4 +1,4 @@
-import { onMounted, onUnmounted } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import { AActor } from '@/Libs/AActor';
 import { Tab } from './Component/Tab/Tab';
 import { Mission } from './Component/Mission/Mission';
@@ -15,8 +15,12 @@ class Application extends AActor {
 
     public mission = new Mission(this);
 
+    public isExpand = ref<boolean>(true);
+
     public InitStates() {
-        return {};
+        return {
+            isExpand: this.isExpand
+        };
     }
 
     public InitHooks() {}
@@ -39,12 +43,16 @@ class Application extends AActor {
 
     private async GetStates() {
         const screen = await Renderer.Monitor.GetPrimaryMonitor();
+        const width = parseInt(localStorage.getItem('width') || '340');
         const height = parseInt(localStorage.getItem('height') || '150');
-        const x = parseInt(localStorage.getItem('x') || `${screen.x + screen.width - 390}`);
+        const x = parseInt(localStorage.getItem('x') || `${screen.x + screen.width - width - 50}`);
         const y = parseInt(localStorage.getItem('y') || `${screen.y + 50}`);
-        await Renderer.Widget.SetSize(340, height);
         await Renderer.Widget.SetPosition(x, y);
+        const expand = parseInt(localStorage.getItem('Expand') || '1');
+        this.isExpand.value = expand === 1;
+        await Renderer.Widget.SetSize(this.isExpand.value ? width : 50, this.isExpand.value ? height : 50);
         W.appWindow.onResized(async (e) => {
+            localStorage.setItem('width', `${e.payload.width}`);
             localStorage.setItem('height', `${e.payload.height}`);
         });
         W.appWindow.onMoved(async (e) => {

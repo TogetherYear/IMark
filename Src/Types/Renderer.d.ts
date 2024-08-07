@@ -119,6 +119,11 @@ declare namespace Renderer {
         export function Center(): Promise<void>;
 
         /**
+         * 设置是否可由鼠标变化大小
+         */
+        export function SetResizable(b: boolean): Promise<void>;
+
+        /**
          * 设置是否显示在最上层
          */
         export function SetAlwaysOnTop(b: boolean): Promise<void>;
