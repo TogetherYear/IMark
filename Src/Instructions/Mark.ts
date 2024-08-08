@@ -7,6 +7,7 @@ namespace Mark {
         time: string;
         expand: boolean;
         current: number;
+        fileType: string;
     };
 }
 

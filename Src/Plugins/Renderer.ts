@@ -599,7 +599,8 @@ class Renderer extends EventSystem {
             FileDrop: 'FileDrop',
             ThemeUpdate: 'ThemeUpdate',
             UpdateMission: 'UpdateMission',
-            UpdateAutoStart: 'UpdateAutoStart'
+            UpdateAutoStart: 'UpdateAutoStart',
+            UpdateType: 'UpdateType'
         };
     }
 
@@ -624,6 +625,7 @@ class Renderer extends EventSystem {
         this.AddKey(this.RendererEvent.ThemeUpdate);
         this.AddKey(this.RendererEvent.UpdateMission);
         this.AddKey(this.RendererEvent.UpdateAutoStart);
+        this.AddKey(this.RendererEvent.UpdateType);
     }
 
     private ListenEvents() {
@@ -643,6 +645,8 @@ class Renderer extends EventSystem {
                 const isAutoStart = await this.App.IsAutostart();
                 this.App.SetAutostart(!isAutoStart);
                 this.Emit(this.RendererEvent.UpdateAutoStart, { event: this.RendererEvent.UpdateAutoStart, extra: { flag: !isAutoStart } });
+            } else if (r.event == this.RendererEvent.UpdateType) {
+                this.Emit(this.RendererEvent.UpdateType, r);
             }
             this.Emit(this.RendererEvent.Message, r);
         });

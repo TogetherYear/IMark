@@ -10,7 +10,7 @@ const instance = new Update();
 
 provide('instance', instance);
 
-const { options } = instance.InitStates();
+const { options, types } = instance.InitStates();
 
 instance.InitHooks();
 
@@ -21,6 +21,9 @@ instance.Run();
     <div class="Update">
         <HeaderBarVue></HeaderBarVue>
         <span class="Content">
+            <span class="FileType">
+                <span :class="{ Item: true, Active: options.fileType === t }" v-for="t in types" :key="t" @click="instance.OnClickFileType(t)">{{ t }}</span>
+            </span>
             <span class="Type">
                 <el-input v-model="options.type" placeholder="请输入类型" style="width: calc(100% - 110px); height: 35px"> </el-input>
                 <span class="Finish" @click="instance.OnClickSure()">确认</span>

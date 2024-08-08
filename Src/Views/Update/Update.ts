@@ -1,18 +1,21 @@
 import { Mark } from '@/Instructions/Mark';
 import { AActor } from '@/Libs/AActor';
 import { Time } from '@/Utils/Time';
-import { onMounted, onUnmounted, reactive, toRaw } from 'vue';
+import { onMounted, onUnmounted, reactive, ref, toRaw } from 'vue';
 
 class Update extends AActor {
     public constructor() {
         super();
     }
 
-    private options = reactive<{ type: string; label: string; images: Array<string> }>({
+    private options = reactive<{ type: string; label: string; images: Array<string>; fileType: string }>({
         type: '',
         label: '',
-        images: []
+        images: [],
+        fileType: ''
     });
+
+    private types = ref<Array<string>>([]);
 
     private allowTypes = ['jpg', 'png', 'bmp', 'webp', 'gif'];
 
@@ -22,7 +25,8 @@ class Update extends AActor {
 
     public InitStates() {
         return {
-            options: this.options
+            options: this.options,
+            types: this.types
         };
     }
 
@@ -60,7 +64,7 @@ class Update extends AActor {
     }
 
     private async GetDefaultValues() {
-        const result = JSON.parse(localStorage.getItem('Current')!) as Mark.MarkDetail & { edit: boolean };
+        const result = JSON.parse(localStorage.getItem('Current')!) as Mark.MarkDetail & { edit: boolean; types: Array<string> };
         if (result.edit) {
             this.editId = result.id;
             this.isExpand = result.expand;
@@ -68,6 +72,13 @@ class Update extends AActor {
             this.options.label = result.label;
             this.options.images.splice(0, this.options.images.length, ...result.images);
         }
+        this.options.fileType = result.fileType;
+        this.types.value.splice(0, this.types.value.length, ...result.types);
+        console.log(result);
+    }
+
+    public OnClickFileType(type: string) {
+        this.options.fileType = type;
     }
 
     public OnClickDelete(index: number) {

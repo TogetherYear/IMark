@@ -603,7 +603,8 @@ declare namespace Renderer {
         FileDrop = 'FileDrop',
         ThemeUpdate = 'ThemeUpdate',
         UpdateMission = 'UpdateMission',
-        UpdateAutoStart = 'UpdateAutoStart'
+        UpdateAutoStart = 'UpdateAutoStart',
+        UpdateType = 'UpdateType'
     }
 
     /**

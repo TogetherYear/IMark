@@ -64,6 +64,7 @@ class Application extends AActor {
     private ListenEvents() {
         Renderer.AddListen(Renderer.RendererEvent.SecondInstance, this, this.OnSecondInstance);
         Renderer.AddListen(Renderer.RendererEvent.UpdateMission, this, this.OnUpdateMission);
+        Renderer.AddListen(Renderer.RendererEvent.UpdateType, this, this.OnUpdateType);
     }
 
     private async OnSecondInstance(e: IT.IRendererSendMessage) {
@@ -71,7 +72,7 @@ class Application extends AActor {
     }
 
     private OnUpdateMission(e: IT.IRendererSendMessage) {
-        const data = e.extra as { type: string; label: string; images: Array<string>; id: string; expand: boolean };
+        const data = e.extra as { type: string; label: string; images: Array<string>; id: string; expand: boolean; fileType: string };
         const newMission: Mark.MarkDetail = {
             ...data,
             id: data.id || Time.GenerateRandomUid(),
@@ -79,6 +80,26 @@ class Application extends AActor {
             current: 0
         };
         this.mission.AddMission(newMission);
+    }
+
+    private async OnUpdateType(e: IT.IRendererSendMessage) {
+        const data = e.extra as { lastName: string; name: string };
+        if (data.lastName === this.tab.lastRead.value) {
+            localStorage.setItem('Read', data.name);
+            this.tab.lastRead.value = data.name;
+        }
+        const index = this.tab.types.value.findIndex((t) => t === data.lastName);
+        if (index !== -1) {
+            this.tab.types.value.splice(index, 1, data.name);
+        }
+        const targetFile = await Renderer.Resource.GetPathByName(`Mission/${data.name}.json`, false);
+        const lastFile = await Renderer.Resource.GetPathByName(`Mission/${data.lastName}.json`, false);
+        if (data.lastName) {
+            await Renderer.Resource.Rename(lastFile, targetFile);
+        } else {
+            this.tab.types.value.push(data.name);
+            await Renderer.Resource.WriteStringToFile(targetFile, JSON.stringify([]));
+        }
     }
 }
 

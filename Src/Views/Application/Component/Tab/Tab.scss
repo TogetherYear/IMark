@@ -5,6 +5,7 @@
     left: 0;
     top: 0;
     background: #383838dd;
+    z-index: 14;
     .Drag {
         position: absolute;
         width: calc(100%);
@@ -30,6 +31,23 @@
             margin: auto;
             pointer-events: none;
         }
+    }
+    .Read {
+        position: absolute;
+        width: 120px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: #ffffff;
+        font-size: 13px;
+        letter-spacing: 1px;
+        pointer-events: none;
     }
     .Title {
         position: absolute;
@@ -66,6 +84,123 @@
                 margin: auto;
                 pointer-events: none;
                 filter: invert(1);
+            }
+        }
+        .Select {
+            position: absolute;
+            width: 160px;
+            left: -160px;
+            top: 6px;
+            background: #141414ff;
+            max-height: 132px;
+            border-radius: 2px;
+            line-height: 0px;
+            font-size: 0px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            box-shadow: 0px 0px 2px 0px #ccccccaa;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            .Which {
+                position: relative;
+                display: block;
+                width: calc(100% - 4px);
+                margin-top: 2px;
+                left: 2px;
+                height: 24px;
+                background: #444444dd;
+                cursor: pointer;
+                transition: all 0.15s;
+                &:hover {
+                    background: #666666dd;
+                }
+                &:last-child {
+                    margin-bottom: 2px;
+                }
+                .Title {
+                    position: absolute;
+                    width: calc(100% - 10px);
+                    height: 100%;
+                    top: 0;
+                    left: 5px;
+                    line-height: 24px;
+                    text-align: center;
+                    color: #ffffff;
+                    font-size: 12px;
+                    letter-spacing: 1px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+                .Icon {
+                    position: absolute;
+                    width: 24px;
+                    height: 24px;
+                    top: 0;
+                    bottom: 0;
+                    left: 50px;
+                    margin: auto;
+                    img {
+                        position: absolute;
+                        width: 70%;
+                        top: 0;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        margin: auto;
+                        filter: invert(1);
+                    }
+                }
+                .Label {
+                    position: absolute;
+                    height: 100%;
+                    top: 0;
+                    left: 80px;
+                    line-height: 24px;
+                    text-align: center;
+                    color: #ffffff;
+                    font-size: 12px;
+                    letter-spacing: 1px;
+                }
+                .Delete {
+                    position: absolute;
+                    width: 24px;
+                    height: 24px;
+                    top: 0;
+                    bottom: 0;
+                    right: 2px;
+                    margin: auto;
+                    img {
+                        position: absolute;
+                        width: 70%;
+                        top: 0;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        margin: auto;
+                        filter: grayscale(1) brightness(200%);
+                    }
+                }
+                .Edit {
+                    @extend .Delete;
+                    right: 28px;
+                }
+                .Type {
+                    position: absolute;
+                    height: 100%;
+                    width: calc(100% - 57px);
+                    top: 0;
+                    left: 5px;
+                    text-align: center;
+                    line-height: 24px;
+                    color: #ffffff;
+                    font-size: 12px;
+                    letter-spacing: 1px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
             }
         }
     }
