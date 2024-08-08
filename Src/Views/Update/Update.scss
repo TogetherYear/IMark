@@ -22,7 +22,6 @@
             margin-top: 10px;
             height: min-content;
             background: #212121;
-            padding-top: 10px;
             padding-bottom: 10px;
             .Item {
                 position: relative;
@@ -35,6 +34,7 @@
                 font-size: 13px;
                 background: #444444aa;
                 margin-left: 10px;
+                margin-top: 10px;
                 border-radius: 2px;
                 cursor: pointer;
             }
@@ -61,7 +61,7 @@
                 border-radius: 3px;
                 font-size: 14px;
                 box-sizing: border-box;
-                border: 1px solid #745151;
+                border: 1px solid #888888;
                 cursor: pointer;
             }
         }
