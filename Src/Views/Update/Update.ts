@@ -74,7 +74,6 @@ class Update extends AActor {
         }
         this.options.fileType = result.fileType;
         this.types.value.splice(0, this.types.value.length, ...result.types);
-        console.log(result);
     }
 
     public OnClickFileType(type: string) {
