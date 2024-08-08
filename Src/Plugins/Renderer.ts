@@ -711,6 +711,8 @@ class Renderer extends EventSystem {
             return 'Update';
         } else if (href.indexOf('Picture') != -1) {
             return 'Picture';
+        } else if (href.indexOf('Type') != -1) {
+            return 'Type';
         } else {
             return 'Application';
         }

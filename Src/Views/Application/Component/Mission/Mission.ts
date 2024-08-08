@@ -43,9 +43,9 @@ class Mission extends AActor {
     }
 
     private async GetExistMission() {
-        const lastRead = localStorage.getItem('Read') || '';
-        this.parent.tab.lastRead.value = lastRead;
         const files = await Renderer.Resource.ReadDirFiles(await Renderer.Resource.GetPathByName('Mission', false));
+        const lastRead = localStorage.getItem('Read') || (files.length === 0 ? '' : files[0].name!.split('.json')[0]);
+        this.parent.tab.lastRead.value = lastRead;
         this.parent.tab.types.value.splice(0, this.parent.tab.types.value.length);
         for (let f of files) {
             this.parent.tab.types.value.push(f.name!.split('.json')[0]);

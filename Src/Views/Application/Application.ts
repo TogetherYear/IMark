@@ -93,8 +93,8 @@ class Application extends AActor {
             this.tab.types.value.splice(index, 1, data.name);
         }
         const targetFile = await Renderer.Resource.GetPathByName(`Mission/${data.name}.json`, false);
-        const lastFile = await Renderer.Resource.GetPathByName(`Mission/${data.lastName}.json`, false);
         if (data.lastName) {
+            const lastFile = await Renderer.Resource.GetPathByName(`Mission/${data.lastName}.json`, false);
             await Renderer.Resource.Rename(lastFile, targetFile);
         } else {
             this.tab.types.value.push(data.name);

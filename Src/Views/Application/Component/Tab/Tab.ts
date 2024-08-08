@@ -4,6 +4,7 @@ import { Application } from '../../Application';
 import addIcon from '@/Assets/MC/add.png';
 import typeIcon from '@/Assets/MC/type.png';
 import { Mark } from '@/Instructions/Mark';
+import { ElMessage } from 'element-plus';
 
 class Tab extends AActor {
     public constructor(parent: Application) {
@@ -61,18 +62,25 @@ class Tab extends AActor {
     }
 
     public async OnClickAdd() {
-        await Renderer.App.CreateWidget(`Update`, {
-            alwaysOnTop: true,
-            center: true,
-            width: 820,
-            height: 480,
-            url: location.href.replace('Application', `Update`),
-            decorations: false,
-            transparent: true,
-            visible: false,
-            focus: false,
-            skipTaskbar: false
-        });
+        if (this.lastRead.value) {
+            await Renderer.App.CreateWidget(`Update`, {
+                alwaysOnTop: true,
+                center: true,
+                width: 820,
+                height: 480,
+                url: location.href.replace('Application', `Update`),
+                decorations: false,
+                transparent: true,
+                visible: false,
+                focus: false,
+                skipTaskbar: false
+            });
+        } else {
+            ElMessage({
+                type: 'warning',
+                message: `请先选择分类`
+            });
+        }
     }
 
     public async OnClickType(type: string) {
