@@ -1,5 +1,4 @@
 import { AActor } from '@/Libs/AActor';
-import { ElMessage } from 'element-plus';
 import { onMounted, onUnmounted, ref } from 'vue';
 
 class Type extends AActor {
@@ -11,9 +10,17 @@ class Type extends AActor {
 
     private lastName = '';
 
+    private isShowError = ref<boolean>(false);
+
+    private errorMsg = ref<string>('请输入分类');
+
+    private timer!: number;
+
     public InitStates() {
         return {
-            name: this.name
+            name: this.name,
+            isShowError: this.isShowError,
+            errorMsg: this.errorMsg
         };
     }
 
@@ -44,10 +51,12 @@ class Type extends AActor {
             Renderer.Event.Emit(Renderer.Event.TauriEvent.TAURI, { event: Renderer.RendererEvent.UpdateType, extra: { name: this.name.value, lastName: this.lastName } });
             await Renderer.Widget.Close();
         } else {
-            ElMessage({
-                type: 'warning',
-                message: `请输入分类！`
-            });
+            this.isShowError.value = true;
+            this.errorMsg.value = '请输入分类';
+            clearTimeout(this.timer);
+            this.timer = setTimeout(() => {
+                this.isShowError.value = false;
+            }, 2000);
         }
     }
 }

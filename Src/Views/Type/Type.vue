@@ -8,7 +8,7 @@ const instance = new Type();
 
 provide('instance', instance);
 
-const { name } = instance.InitStates();
+const { name, isShowError, errorMsg } = instance.InitStates();
 
 instance.InitHooks();
 
@@ -18,6 +18,7 @@ instance.Run();
 <template>
     <div class="Type">
         <HeaderBarVue></HeaderBarVue>
+        <span class="Error" :style="{ opacity: isShowError ? '1' : '0' }">{{ errorMsg }}</span>
         <span class="Content">
             <span class="Input">
                 <el-input v-model="name" placeholder="请输入分类" style="height: 100%"> </el-input>

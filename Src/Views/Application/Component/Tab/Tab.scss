@@ -49,16 +49,27 @@
         letter-spacing: 1px;
         pointer-events: none;
     }
-    .Title {
+    .Error {
         position: absolute;
+        width: 120px;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 26px;
+        line-height: 26px;
+        text-align: center;
+        overflow: hidden;
         white-space: nowrap;
-        width: min-content;
-        left: 50px;
-        height: 30px;
-        line-height: 30px;
+        text-overflow: ellipsis;
         color: #ffffff;
-        font-size: 14px;
+        font-size: 13px;
         letter-spacing: 1px;
+        pointer-events: none;
+        background: #427a3d;
+        transition: all 0.2s;
+        border-radius: 2px;
     }
     .Btns {
         position: absolute;

@@ -8,7 +8,7 @@ import editIcon from '@/Assets/MC/edit.png';
 
 const instance = inject('instance') as Application;
 
-const { btns, types, isShowType, lastRead } = instance.tab.InitStates();
+const { btns, types, isShowType, lastRead, isShowError, errorMsg } = instance.tab.InitStates();
 
 instance.tab.InitHooks();
 
@@ -22,7 +22,7 @@ instance.tab.Run();
             <img :src="logoIcon" alt="" />
         </span>
         <span class="Read">{{ lastRead }}</span>
-        <!-- <span class="Title">IMark</span> -->
+        <span class="Error" :style="{ opacity: isShowError ? '1' : '0' }">{{ errorMsg }}</span>
         <span class="Btns">
             <span class="Item" v-for="b in btns" :key="b.label" @click="instance.tab.OnClickBtn(b.label)">
                 <img :src="b.icon" alt="" />

@@ -4,7 +4,6 @@ import { Application } from '../../Application';
 import addIcon from '@/Assets/MC/add.png';
 import typeIcon from '@/Assets/MC/type.png';
 import { Mark } from '@/Instructions/Mark';
-import { ElMessage } from 'element-plus';
 
 class Tab extends AActor {
     public constructor(parent: Application) {
@@ -31,12 +30,20 @@ class Tab extends AActor {
 
     public isShowType = ref<boolean>(false);
 
+    private isShowError = ref<boolean>(false);
+
+    private errorMsg = ref<string>('请先选择分类');
+
+    private timer!: number;
+
     public InitStates() {
         return {
             btns: this.btns,
             types: this.types,
             isShowType: this.isShowType,
-            lastRead: this.lastRead
+            lastRead: this.lastRead,
+            isShowError: this.isShowError,
+            errorMsg: this.errorMsg
         };
     }
 
@@ -76,10 +83,12 @@ class Tab extends AActor {
                 skipTaskbar: false
             });
         } else {
-            ElMessage({
-                type: 'warning',
-                message: `请先选择分类`
-            });
+            this.isShowError.value = true;
+            this.errorMsg.value = '请先选择分类';
+            clearTimeout(this.timer);
+            this.timer = setTimeout(() => {
+                this.isShowError.value = false;
+            }, 2000);
         }
     }
 
