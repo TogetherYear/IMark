@@ -19,7 +19,6 @@ instance.Run();
 <template>
     <div class="Picture">
         <HeaderBarVue></HeaderBarVue>
-        <span class="Title">{{ current.type }} --- {{ current.label }}</span>
         <span class="Content">
             <TransformableVue>
                 <span class="Preview">

@@ -8,22 +8,6 @@
     right: 0;
     margin: auto;
     background: #2b2b2b;
-    .Title {
-        position: absolute;
-        width: calc(100% - 54px);
-        height: 26px;
-        left: 10px;
-        top: 0;
-        pointer-events: none;
-        color: #28d4da;
-        line-height: 26px;
-        font-size: 12px;
-        letter-spacing: 1px;
-        z-index: 14;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
     .Content {
         position: absolute;
         height: calc(100% - 26px);

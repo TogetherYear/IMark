@@ -136,7 +136,7 @@
                             left: 0;
                             right: 0;
                             margin: auto;
-                            filter: invert(0.9);
+                            filter: invert(0.9) brightness(120%);
                             pointer-events: none;
                             transform: rotate(90deg);
                         }
@@ -158,7 +158,7 @@
                     right: 10px;
                     top: 5px;
                     color: #ffffff;
-                    font-size: 15px;
+                    font-size: 14px;
                 }
             }
             .T {
