@@ -206,7 +206,7 @@ class Renderer extends EventSystem {
                 });
             },
             GetFileByNameFromLocalServer: (name: string) => {
-                return `http://localhost:8676/Static/${name}`;
+                return `http://localhost:34290/Static/${name}`;
             },
             GetPathMetadata: (path: string) => {
                 return M.metadata(path);

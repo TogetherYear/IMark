@@ -110,7 +110,7 @@
                 "center": false,
                 "title": "Application",
                 "width": 340,
-                "minWidth": 140,
+                "minWidth": 275,
                 "decorations": false,
                 "focus": false,
                 "label": "Application",

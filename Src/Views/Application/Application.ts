@@ -1,4 +1,4 @@
-import { onMounted, onUnmounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref, toRaw } from 'vue';
 import { AActor } from '@/Libs/AActor';
 import { Tab } from './Component/Tab/Tab';
 import { Mission } from './Component/Mission/Mission';
@@ -84,21 +84,27 @@ class Application extends AActor {
 
     private async OnUpdateType(e: IT.IRendererSendMessage) {
         const data = e.extra as { lastName: string; name: string };
-        if (data.lastName === this.tab.lastRead.value) {
-            localStorage.setItem('Read', data.name);
-            this.tab.lastRead.value = data.name;
-        }
-        const index = this.tab.types.value.findIndex((t) => t === data.lastName);
-        if (index !== -1) {
-            this.tab.types.value.splice(index, 1, data.name);
-        }
-        const targetFile = await Renderer.Resource.GetPathByName(`Mission/${data.name}.json`, false);
-        if (data.lastName) {
-            const lastFile = await Renderer.Resource.GetPathByName(`Mission/${data.lastName}.json`, false);
-            await Renderer.Resource.Rename(lastFile, targetFile);
-        } else {
-            this.tab.types.value.push(data.name);
-            await Renderer.Resource.WriteStringToFile(targetFile, JSON.stringify([]));
+        if (data.lastName !== data.name) {
+            if (data.lastName === this.tab.lastRead.value) {
+                localStorage.setItem('Read', data.name);
+                this.tab.lastRead.value = data.name;
+            }
+            const index = this.tab.types.value.findIndex((t) => t === data.lastName);
+            if (index !== -1) {
+                this.tab.types.value.splice(index, 1, data.name);
+            }
+            const targetFile = await Renderer.Resource.GetPathByName(`Mission/${data.name}.json`, false);
+            if (data.lastName) {
+                const lastFile = await Renderer.Resource.GetPathByName(`Mission/${data.lastName}.json`, false);
+                this.mission.list.value.forEach((l) => {
+                    l.fileType = data.name;
+                });
+                await Renderer.Resource.WriteStringToFile(lastFile, JSON.stringify(toRaw(this.mission.list.value)));
+                await Renderer.Resource.Rename(lastFile, targetFile);
+            } else {
+                this.tab.types.value.push(data.name);
+                await Renderer.Resource.WriteStringToFile(targetFile, JSON.stringify([]));
+            }
         }
     }
 }

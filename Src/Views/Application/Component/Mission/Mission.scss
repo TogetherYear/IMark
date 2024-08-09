@@ -182,6 +182,7 @@
                         right: 0;
                         margin: auto;
                         pointer-events: none;
+                        filter: hue-rotate(210deg) brightness(90%);
                     }
                 }
                 .Edit {
@@ -214,6 +215,7 @@
                         right: 0;
                         margin: auto;
                         pointer-events: none;
+                        filter: hue-rotate(110deg) brightness(110%);
                     }
                 }
                 .ToT {

@@ -38,7 +38,7 @@ async fn ActixServer(path: String) -> std::io::Result<()> {
             .service(fs::Files::new("/Static", path.as_str()))
             .service(Test)
     })
-    .bind(("127.0.0.1", 8676))
+    .bind(("127.0.0.1", 34290))
     .unwrap()
     .run()
     .await
