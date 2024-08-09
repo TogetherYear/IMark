@@ -105,7 +105,7 @@
             {
                 "fullscreen": false,
                 "height": 150,
-                "minHeight": 72,
+                "minHeight": 70,
                 "resizable": true,
                 "center": false,
                 "title": "Application",

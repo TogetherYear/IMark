@@ -28,9 +28,10 @@
     .List {
         position: absolute;
         width: calc(100% - 8px);
-        height: 100%;
+        height: calc(100% - 8px);
         top: 0;
         left: 4px;
+        top: 4px;
         overflow-x: hidden;
         overflow-y: scroll;
         &::-webkit-scrollbar {
@@ -40,7 +41,7 @@
             position: relative;
             display: block;
             width: 100%;
-            margin-top: 5px;
+            margin-bottom: 4px;
             border-radius: 2px;
             overflow: hidden;
             background: #dddddd22;
@@ -50,7 +51,7 @@
                 background: #dddddd44;
             }
             &:last-child {
-                margin-bottom: 5px;
+                margin-bottom: 0px;
             }
             .Type {
                 position: relative;
