@@ -43,21 +43,21 @@ class Application extends AActor {
 
     private async GetStates() {
         const screen = await Renderer.Monitor.GetPrimaryMonitor();
-        const width = parseInt(localStorage.getItem('width') || '340');
-        const height = parseInt(localStorage.getItem('height') || '150');
-        const x = parseInt(localStorage.getItem('x') || `${screen.x + screen.width - width - 50}`);
-        const y = parseInt(localStorage.getItem('y') || `${screen.y + 50}`);
+        const width = parseInt(localStorage.getItem('IMark_Normal_Width') || '340');
+        const height = parseInt(localStorage.getItem('IMark_Normal_Height') || '150');
+        const x = parseInt(localStorage.getItem('IMark_X') || `${screen.x + screen.width - width - 50}`);
+        const y = parseInt(localStorage.getItem('IMark_Y') || `${screen.y + 50}`);
         await Renderer.Widget.SetPosition(x, y);
-        const expand = parseInt(localStorage.getItem('Expand') || '1');
+        const expand = parseInt(localStorage.getItem('IMark_Expand') || '1');
         this.isExpand.value = expand === 1;
         await Renderer.Widget.SetSize(this.isExpand.value ? width : 50, this.isExpand.value ? height : 50);
         W.appWindow.onResized(async (e) => {
-            localStorage.setItem('width', `${e.payload.width}`);
-            localStorage.setItem('height', `${e.payload.height}`);
+            localStorage.setItem('IMark_Normal_Width', `${e.payload.width}`);
+            localStorage.setItem('IMark_Normal_Height', `${e.payload.height}`);
         });
         W.appWindow.onMoved(async (e) => {
-            localStorage.setItem('x', `${e.payload.x}`);
-            localStorage.setItem('y', `${e.payload.y}`);
+            localStorage.setItem('IMark_X', `${e.payload.x}`);
+            localStorage.setItem('IMark_Y', `${e.payload.y}`);
         });
     }
 
@@ -86,7 +86,7 @@ class Application extends AActor {
         const data = e.extra as { lastName: string; name: string };
         if (data.lastName !== data.name) {
             if (data.lastName === this.tab.lastRead.value) {
-                localStorage.setItem('Read', data.name);
+                localStorage.setItem('IMark_Read', data.name);
                 this.tab.lastRead.value = data.name;
             }
             const index = this.tab.types.value.findIndex((t) => t === data.lastName);

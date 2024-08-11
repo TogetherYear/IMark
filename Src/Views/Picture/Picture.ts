@@ -22,7 +22,7 @@ class Picture extends AActor {
 
     public Run() {
         onMounted(async () => {
-            const current = JSON.parse(localStorage.getItem('Image')!) as { url: string; type: string; label: string };
+            const current = JSON.parse(localStorage.getItem('IMark_Image')!) as { url: string; type: string; label: string };
             this.current.url = current.url;
             this.current.type = current.type;
             this.current.label = current.label;

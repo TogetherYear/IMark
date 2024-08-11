@@ -63,7 +63,7 @@ class Tab extends AActor {
         if (e === '分类') {
             this.isShowType.value = !this.isShowType.value;
         } else if (e === '添加') {
-            localStorage.setItem('Current', JSON.stringify({ edit: false, fileType: this.lastRead.value, types: toRaw(this.types.value) }));
+            localStorage.setItem('IMark_Current', JSON.stringify({ edit: false, fileType: this.lastRead.value, types: toRaw(this.types.value) }));
             await this.OnClickAdd();
         }
     }
@@ -94,7 +94,7 @@ class Tab extends AActor {
 
     public async OnClickType(type: string) {
         if (type === '添加') {
-            localStorage.setItem('Type', JSON.stringify({ name: '' }));
+            localStorage.setItem('IMark_Type', JSON.stringify({ name: '' }));
             await Renderer.App.CreateWidget(`Type`, {
                 alwaysOnTop: true,
                 center: true,
@@ -110,7 +110,7 @@ class Tab extends AActor {
         } else {
             if (this.lastRead.value !== type) {
                 this.lastRead.value = type;
-                localStorage.setItem('Read', type);
+                localStorage.setItem('IMark_Read', type);
                 const json: Array<Mark.MarkDetail> = JSON.parse(await Renderer.Resource.ReadStringFromFile(await Renderer.Resource.GetPathByName(`Mission/${type}.json`, false)));
                 this.parent.mission.list.value.splice(0, this.parent.mission.list.value.length, ...json);
             }
@@ -130,7 +130,7 @@ class Tab extends AActor {
                 if (this.lastRead.value === type) {
                     this.parent.mission.list.value.splice(0, this.parent.mission.list.value.length);
                     this.lastRead.value = '';
-                    localStorage.setItem('Read', '');
+                    localStorage.setItem('IMark_Read', '');
                 }
                 const index = this.types.value.findIndex((t) => t === type);
                 if (index !== -1) {
@@ -142,7 +142,7 @@ class Tab extends AActor {
     }
 
     public async OnClickEditType(type: string) {
-        localStorage.setItem('Type', JSON.stringify({ name: type }));
+        localStorage.setItem('IMark_Type', JSON.stringify({ name: type }));
         await Renderer.App.CreateWidget(`Type`, {
             alwaysOnTop: true,
             center: true,
@@ -161,16 +161,16 @@ class Tab extends AActor {
         if (this.parent.isExpand.value) {
             this.parent.isExpand.value = false;
             const size = await Renderer.Widget.GetSize();
-            localStorage.setItem('Expand', '0');
-            localStorage.setItem('AllWidth', `${size.width}`);
-            localStorage.setItem('AllHeight', `${size.height}`);
+            localStorage.setItem('IMark_Expand', '0');
+            localStorage.setItem('IMark_Expand_Width', `${size.width}`);
+            localStorage.setItem('IMark_Expand_Height', `${size.height}`);
             await Renderer.Widget.SetSize(50, 50);
             await Renderer.Widget.SetResizable(false);
         } else {
             this.parent.isExpand.value = true;
-            localStorage.setItem('Expand', '1');
-            const width = parseInt(localStorage.getItem('AllWidth') || '340');
-            const height = parseInt(localStorage.getItem('AllHeight') || '150');
+            localStorage.setItem('IMark_Expand', '1');
+            const width = parseInt(localStorage.getItem('IMark_Expand_Width') || '340');
+            const height = parseInt(localStorage.getItem('IMark_Expand_Height') || '150');
             await Renderer.Widget.SetSize(width, height);
             await Renderer.Widget.SetResizable(true);
         }

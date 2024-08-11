@@ -64,7 +64,7 @@ class Update extends AActor {
     }
 
     private async GetDefaultValues() {
-        const result = JSON.parse(localStorage.getItem('Current')!) as Mark.MarkDetail & { edit: boolean; types: Array<string> };
+        const result = JSON.parse(localStorage.getItem('IMark_Current')!) as Mark.MarkDetail & { edit: boolean; types: Array<string> };
         if (result.edit) {
             this.editId = result.id;
             this.isExpand = result.expand;
@@ -90,7 +90,7 @@ class Update extends AActor {
     }
 
     public async OnClickImage(url: string) {
-        localStorage.setItem('Image', JSON.stringify({ url, type: this.options.type, label: this.options.label }));
+        localStorage.setItem('IMark_Image', JSON.stringify({ url, type: this.options.type, label: this.options.label }));
         await Renderer.App.CreateWidget(`Picture_${Time.GenerateRandomUid()}`, {
             alwaysOnTop: true,
             center: true,

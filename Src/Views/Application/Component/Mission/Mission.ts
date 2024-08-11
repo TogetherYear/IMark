@@ -45,13 +45,13 @@ class Mission extends AActor {
     private async GetExistMission() {
         const files = await Renderer.Resource.ReadDirFiles(await Renderer.Resource.GetPathByName('Mission', false));
         this.parent.tab.types.value.splice(0, this.parent.tab.types.value.length, ...files.map((f) => f.name!.split('.json')[0]));
-        let lastRead = localStorage.getItem('Read') || '';
+        let lastRead = localStorage.getItem('IMark_Read') || '';
         if (this.parent.tab.types.value.indexOf(lastRead) === -1) {
             lastRead = files.length === 0 ? '' : files[0].name!.split('.json')[0];
         }
         if (await Renderer.Resource.IsPathExists(await Renderer.Resource.GetPathByName(`Mission/${lastRead}.json`, false))) {
             this.parent.tab.lastRead.value = lastRead;
-            localStorage.setItem('Read', lastRead);
+            localStorage.setItem('IMark_Read', lastRead);
             const json: Array<Mark.MarkDetail> = JSON.parse(await Renderer.Resource.ReadStringFromFile(await Renderer.Resource.GetPathByName(`Mission/${lastRead}.json`, false)));
             this.list.value.splice(0, this.list.value.length, ...json);
         }
@@ -84,7 +84,7 @@ class Mission extends AActor {
     }
 
     public async OnClickEdit(e: Mark.MarkDetail) {
-        localStorage.setItem('Current', JSON.stringify({ ...toRaw(e), edit: true, types: toRaw(this.parent.tab.types.value) }));
+        localStorage.setItem('IMark_Current', JSON.stringify({ ...toRaw(e), edit: true, types: toRaw(this.parent.tab.types.value) }));
         this.parent.tab.OnClickAdd();
     }
 
@@ -103,7 +103,7 @@ class Mission extends AActor {
     }
 
     public async OnClickImage(e: Mark.MarkDetail) {
-        localStorage.setItem('Image', JSON.stringify({ url: e.images[e.current], type: e.type, label: e.label }));
+        localStorage.setItem('IMark_Image', JSON.stringify({ url: e.images[e.current], type: e.type, label: e.label }));
         await Renderer.App.CreateWidget(`Picture_${Time.GenerateRandomUid()}`, {
             alwaysOnTop: true,
             center: true,

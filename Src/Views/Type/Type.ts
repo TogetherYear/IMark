@@ -41,7 +41,7 @@ class Type extends AActor {
     public Destroy() {}
 
     private async GetDefaultValues() {
-        const result = JSON.parse(localStorage.getItem('Type')!) as { name: string };
+        const result = JSON.parse(localStorage.getItem('IMark_Type')!) as { name: string };
         this.name.value = result.name;
         this.lastName = result.name;
     }
