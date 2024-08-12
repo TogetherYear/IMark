@@ -65,6 +65,9 @@ class Application extends AActor {
         Renderer.AddListen(Renderer.RendererEvent.SecondInstance, this, this.OnSecondInstance);
         Renderer.AddListen(Renderer.RendererEvent.UpdateMission, this, this.OnUpdateMission);
         Renderer.AddListen(Renderer.RendererEvent.UpdateType, this, this.OnUpdateType);
+        window.addEventListener('click', () => {
+            this.tab.isShowType.value = false;
+        });
     }
 
     private async OnSecondInstance(e: IT.IRendererSendMessage) {

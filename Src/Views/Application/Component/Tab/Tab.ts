@@ -136,7 +136,6 @@ class Tab extends AActor {
                 if (index !== -1) {
                     this.types.value.splice(index, 1);
                 }
-                this.isShowType.value = false;
             }
         });
     }

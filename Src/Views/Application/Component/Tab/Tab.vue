@@ -23,7 +23,7 @@ instance.tab.Run();
         </span>
         <span class="Read">{{ lastRead }}</span>
         <span class="Error" :style="{ opacity: isShowError ? '1' : '0' }">{{ errorMsg }}</span>
-        <span class="Btns">
+        <span class="Btns" @click.stop="">
             <span class="Item" v-for="b in btns" :key="b.label" @click="instance.tab.OnClickBtn(b.label)">
                 <img :src="b.icon" alt="" />
             </span>
