@@ -14,12 +14,9 @@ class Mission extends AActor {
 
     public list = ref<Array<Mark.MarkDetail>>([]);
 
-    public listDom = ref<HTMLSpanElement | null>(null);
-
     public InitStates() {
         return {
-            list: this.list,
-            listDom: this.listDom
+            list: this.list
         };
     }
 

@@ -29,7 +29,6 @@
         position: absolute;
         width: calc(100% - 8px);
         height: calc(100% - 8px);
-        top: 0;
         left: 4px;
         top: 4px;
         overflow-x: hidden;
@@ -46,6 +45,7 @@
             overflow: hidden;
             background: #dddddd22;
             transition: all 0.15s;
+            cursor: move;
 
             &:hover {
                 background: #dddddd44;

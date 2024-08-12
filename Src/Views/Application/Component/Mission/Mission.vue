@@ -10,7 +10,7 @@ import toBIcon from '@/Assets/MC/toB.png';
 
 const instance = inject('instance') as Application;
 
-const { list, listDom } = instance.mission.InitStates();
+const { list } = instance.mission.InitStates();
 
 instance.mission.InitHooks();
 
@@ -22,7 +22,7 @@ instance.mission.Run();
         <span class="Empty" v-show="list.length == 0">
             <img :src="emptyIcon" alt="" />
         </span>
-        <span class="List" ref="listDom">
+        <span class="List">
             <span class="Item" v-for="(l, index) in list" :key="l.id" :style="{ height: l.expand ? 'min-content' : '30px' }">
                 <span class="Type H" :style="{ fontSize: l.expand ? '14px' : '12px' }" v-html="l.expand ? l.type : l.label"></span>
                 <span class="Label" v-html="l.label"></span>
