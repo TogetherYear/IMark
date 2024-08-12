@@ -1,13 +1,11 @@
 <script lang="ts" setup>
 import { Transformable } from './Transformable';
 
-const instance = new Transformable()
+const instance = new Transformable();
 
-const {
-    dom
-} = instance.InitStates()
-instance.InitHooks()
-instance.Run()
+const { dom } = instance.InitStates();
+instance.InitHooks();
+instance.Run();
 </script>
 
 <template>
@@ -17,5 +15,5 @@ instance.Run()
 </template>
 
 <style lang="scss" scoped>
-@import "./Transformable.scss"
+@import './Transformable.scss';
 </style>
